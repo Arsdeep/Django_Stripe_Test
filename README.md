@@ -55,32 +55,6 @@ docker-compose exec web python manage.py createsuperuser
 - Django shop: `http://localhost:8000`
 - Admin panel: `http://localhost:8000/admin` (use superuser credentials)
 
-## Environment Variables
-
-Set the following in `docker-compose.yml`:
-
-- `STRIPE_PUBLIC_KEY` — your Stripe test public key
-- `STRIPE_SECRET_KEY` — your Stripe test secret key
-- `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` — database credentials
-
-## Reset Database
-
-- To clear all data and reset sequences:
-
-```bash
-docker-compose exec web python manage.py flush
-```
-
-- Or remove PostgreSQL volume and start fresh:
-
-```bash
-docker-compose down
-docker volume rm django_stripe_postgres_data
-docker-compose up -d
-docker-compose exec web python manage.py migrate
-docker-compose exec web python init_products.py
-```
-
 ## Notes
 
 - Stripe is in **test mode**, use test cards like `4242 4242 4242 4242`.

@@ -15,7 +15,6 @@ A simple Django shop with 3 products, Stripe test payments, and PostgreSQL, full
 - Docker
 - Docker Compose
 
-````markdown
 ## Quick Start
 
 1. **Clone the repo**
@@ -24,6 +23,7 @@ A simple Django shop with 3 products, Stripe test payments, and PostgreSQL, full
 git clone <repo_url>
 cd django_stripe
 ```
+
 ````
 
 2. **Build and start containers**
@@ -88,3 +88,4 @@ docker-compose exec web python init_products.py
 - Stripe is in **test mode**, use test cards like `4242 4242 4242 4242`.
 - Orders and products are persisted in the PostgreSQL container.
 - For development, code changes auto-reflect due to volume mapping.
+````

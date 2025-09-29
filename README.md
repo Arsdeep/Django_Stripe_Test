@@ -20,7 +20,7 @@ A simple Django shop with 3 products, Stripe test payments, and PostgreSQL, full
 1. **Clone the repo**
 
 ```bash
-git clone <repo_url>
+git clone https://github.com/Arsdeep/Django_Stripe_Test
 cd django_stripe
 ```
 

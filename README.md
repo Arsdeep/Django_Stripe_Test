@@ -42,9 +42,9 @@ docker-compose exec web python manage.py migrate
 docker-compose exec web python init_products.py
 ```
 
-5. **Create superuser for admin panel (if needed)**
-
 > Required if this is a new container or after flushing the database.
+
+5. **Create superuser for admin panel (if needed)**
 
 ```bash
 docker-compose exec web python manage.py createsuperuser

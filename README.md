@@ -24,8 +24,6 @@ git clone <repo_url>
 cd django_stripe
 ```
 
-````
-
 2. **Build and start containers**
 
 ```bash
@@ -88,4 +86,3 @@ docker-compose exec web python init_products.py
 - Stripe is in **test mode**, use test cards like `4242 4242 4242 4242`.
 - Orders and products are persisted in the PostgreSQL container.
 - For development, code changes auto-reflect due to volume mapping.
-````

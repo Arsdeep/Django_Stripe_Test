@@ -21,7 +21,7 @@ A simple Django shop with 3 products, Stripe test payments, and PostgreSQL, full
 
 ```bash
 git clone https://github.com/Arsdeep/Django_Stripe_Test
-cd django_stripe
+cd Django_Stripe_Test
 ```
 
 2. **Build and start containers**

@@ -397,6 +397,7 @@
       const stripe = Stripe("{{ stripe_public_key }}");
       const elements = stripe.elements();
       const clientSecret = "{{ client_secret }}";
+      const paymentIntentId = "{{ payment_intent_id }}";
 
       // Create a card element with custom styling
       const card = elements.create("card", {
@@ -440,6 +441,13 @@
         buttonText.innerHTML = '<span class="spinner"></span>Processing...';
         cardErrors.classList.remove("show");
 
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+        const csrftoken = getCookie("csrftoken");
+
         stripe
           .confirmCardPayment(clientSecret, {
             payment_method: {
@@ -460,9 +468,11 @@
                   method: "POST",
                   headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
-                    "X-CSRFToken": "{{ csrf_token }}",
+                    "X-CSRFToken": csrftoken,
                   },
-                  body: "order_id={{ order_id }}",
+                  body: `payment_intent_id=${encodeURIComponent(
+                    paymentIntentId
+                  )}`,
                 })
                   .then((res) => res.json())
                   .then((data) => {

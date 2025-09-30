@@ -283,7 +283,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description }}</p>
-                <div class="price-tag">₹{{ product.price }}</div>
+                <div class="price-tag">${{ product.price }}</div>
                 <input
                   type="hidden"
                   name="product_id"
@@ -359,7 +359,7 @@
             <li>{{ item.product.name }} × {{ item.quantity }}</li>
             {% endfor %}
           </ul>
-          <p class="order-total">Total: ₹{{ order.total_price }}</p>
+          <p class="order-total">Total: ${{ order.total_price }}</p>
         </div>
         {% empty %}
         <div class="empty-state">

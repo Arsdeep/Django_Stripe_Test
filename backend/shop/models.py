@@ -2,6 +2,7 @@ from django.db import models
 from typing import TYPE_CHECKING, ClassVar, cast
 from decimal import Decimal
 from django.db.models.manager import Manager
+from django.conf import settings
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -15,6 +16,11 @@ class Product(models.Model):
         return self.name
 
 class Order(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,  # references your custom user model
+        on_delete=models.CASCADE,
+        related_name='orders',
+    )
     paid = models.BooleanField(default=False)
     stripe_payment_intent = models.CharField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,8 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from .models import OrgUser, Organization
 
-class OrgUserSignupForm(UserCreationForm):
+class OrgUserSignupForm(forms.ModelForm):
     organization = forms.ModelChoiceField(
         queryset=Organization.objects.all(),
         required=False,
@@ -17,16 +17,13 @@ class OrgUserSignupForm(UserCreationForm):
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     
-    password1 = forms.CharField(
+    password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
-    )
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'})
     )
 
     class Meta:
         model = OrgUser
-        fields = ('username', 'email', 'organization', 'new_organization', 'password1', 'password2')
+        fields = ('username', 'email', 'organization', 'new_organization', 'password')
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
@@ -34,12 +31,13 @@ class OrgUserSignupForm(UserCreationForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        org = cleaned_data.get('organization')
-        new_org = cleaned_data.get('new_organization')
+        org = cleaned_data.get("organization")
+        new_org = cleaned_data.get("new_organization")
 
         if not org and not new_org:
-            raise forms.ValidationError("You must select an existing organization or enter a new one.")
-
+            self.add_error('organization', "Select an existing organization or enter a new one.")
+            self.add_error('new_organization', "Select an existing organization or enter a new one.")
+            
         return cleaned_data
 
     def save(self, commit=True):
@@ -51,6 +49,7 @@ class OrgUserSignupForm(UserCreationForm):
             org, created = Organization.objects.get_or_create(name=new_org_name)
 
         user.organization = org
+        user.set_password(self.cleaned_data["password"])  # hash password properly
 
         if commit:
             user.save()

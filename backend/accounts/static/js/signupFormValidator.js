@@ -3,8 +3,7 @@ const username = document.getElementById("id_username");
 const email = document.getElementById("id_email");
 const organization = document.getElementById("id_organization");
 const newOrganization = document.getElementById("id_new_organization");
-const password1 = document.getElementById("id_password1");
-const password2 = document.getElementById("id_password2");
+const password = document.getElementById("id_password");
 
 function isStrongPassword(password) {
     const minLength = 8;
@@ -58,31 +57,15 @@ function validateForm(event) {
         valid = false;
     }
 
-    if (!password1.value) {
-        document.getElementById("error-password1").textContent =
+    if (!password.value) {
+        document.getElementById("error-password").textContent =
             "Password is required.";
-        password1.classList.add("is-invalid");
+        password.classList.add("is-invalid");
         valid = false;
-    } else if (!isStrongPassword(password1.value)) {
-        document.getElementById("error-password1").textContent =
+    } else if (!isStrongPassword(password.value)) {
+        document.getElementById("error-password").textContent =
             "Password must be at least 8 characters, contain letters, numbers, and a special character.";
-        password1.classList.add("is-invalid");
-        valid = false;
-    }
-
-    if (!password2.value) {
-        document.getElementById("error-password2").textContent =
-            "Confirm Password is required.";
-        password2.classList.add("is-invalid");
-        valid = false;
-    } else if (
-        password1.value &&
-        password2.value &&
-        password1.value !== password2.value
-    ) {
-        document.getElementById("error-password2").textContent =
-            "Passwords do not match.";
-        password2.classList.add("is-invalid");
+        password.classList.add("is-invalid");
         valid = false;
     }
 

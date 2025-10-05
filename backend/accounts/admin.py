@@ -20,10 +20,10 @@ class OrgUserAdmin(UserAdmin):
         ('Organization Info', {'fields': ('organization',)}),
     )
 
-    list_display = ('username', 'email', 'first_name', 'last_name', 'organization', 'is_staff')
+    list_display = ('username', 'email', 'organization', 'is_staff', 'is_active')
     list_filter = ('organization', 'is_staff', 'is_superuser', 'is_active')
 
-    search_fields = ('username', 'email', 'first_name', 'last_name', 'organization__name')
+    search_fields = ('username', 'email', 'organization__name')
     ordering = ('username',)
 
 # Register OrgUser

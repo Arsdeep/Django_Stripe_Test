@@ -82,7 +82,7 @@
           <div
             id="errorMessage"
             style="
-              color: #000000;
+              color: #ffffff;
               font-weight: 600;
               margin-top: 1rem;
               display: none;
@@ -125,23 +125,30 @@
       <hr class="section-divider" />
 
       <div class="orders-section">
-        <h2>📦 My Orders</h2>
+      <h2>📦 My Orders</h2>
+
+      {% if user.is_authenticated %}
         {% for order in orders %}
-        <div class="order-card">
-          <div class="order-header">Order #{{ order.id }}</div>
-          <ul class="order-items">
-            {% for item in order.items.all %}
-            <li>{{ item.product.name }} × {{ item.quantity }}</li>
-            {% endfor %}
-          </ul>
-          <p class="order-total">Total: ${{ order.total_price }}</p>
-        </div>
+          <div class="order-card">
+            <div class="order-header">Order #{{ order.id }}</div>
+            <ul class="order-items">
+              {% for item in order.items.all %}
+                <li>{{ item.product.name }} × {{ item.quantity }}</li>
+              {% endfor %}
+            </ul>
+            <p class="order-total">Total: ${{ order.total_price }}</p>
+          </div>
         {% empty %}
-        <div class="empty-state">
-          <p>🛍️ No orders yet. Start shopping to see your orders here!</p>
-        </div>
+          <div class="empty-state">
+            <p>🛍️ No orders yet. Start shopping to see your orders here!</p>
+          </div>
         {% endfor %}
-      </div>
+      {% else %}
+        <div class="empty-state">
+          <p>🔒 Please <a href="{% url 'login' %}">log in</a> to see your orders.</p>
+        </div>
+      {% endif %}
     </div>
+
   </body>
 </html>

@@ -1,0 +1,159 @@
+:root {
+    --primary-color: #7f5af0;
+    /* bright purple accent */
+    --primary-dark: #6246ea;
+    /* darker purple */
+    --secondary-color: #f9cb28;
+    /* golden accent */
+    --bg-dark: #1a1b1e;
+    /* main dark background */
+    --bg-light: #25262b;
+    /* card / panel background */
+    --text-color: #e4e4e7;
+    /* light text */
+    --text-muted: #a1a1aa;
+    /* muted text */
+    --error-color: #f87171;
+    /* soft red for errors */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5),
+        0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+        0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Page background */
+body {
+    background: linear-gradient(135deg, #1f1f23 0%, #2c2c34 100%);
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+/* Auth card container */
+.auth-container {
+    max-width: 450px;
+    width: 100%;
+    padding: 2.5rem;
+    background: var(--bg-light);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow-hover);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* Heading */
+.auth-container h2 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+/* Form elements */
+.auth-container form {
+    width: 100%;
+}
+
+.auth-container .form-group {
+    margin-bottom: 1rem;
+}
+
+.auth-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Input, textarea, select */
+.auth-container input,
+.auth-container textarea,
+.auth-container select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #3f3f46;
+    background: #1f1f23;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.auth-container input::placeholder,
+.auth-container textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.auth-container input:focus,
+.auth-container textarea:focus,
+.auth-container select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(127, 90, 240, 0.2);
+    outline: none;
+    background: #25262b;
+    color: var(--text-color);
+}
+
+/* Submit button */
+.auth-container button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 8px 16px rgba(127, 90, 240, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.auth-container button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(127, 90, 240, 0.5);
+}
+
+/* Help text */
+.auth-container .helptext {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Error messages */
+.auth-container .errorlist {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.25rem;
+}
+
+/* Toggle new organization field */
+#new-org-field {
+    display: none;
+    margin-top: 1rem;
+}
+
+/* Force all text inside the card to use correct color */
+.auth-container,
+.auth-container label,
+.auth-container h2,
+.auth-container .helptext,
+.auth-container .errorlist,
+.auth-container input,
+.auth-container textarea,
+.auth-container select {
+    color: var(--text-color) !important;
+}
+
+.auth-container small {
+    color: var(--text-muted) !important;
+}

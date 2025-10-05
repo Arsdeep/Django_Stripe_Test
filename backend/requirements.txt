@@ -3,3 +3,4 @@ psycopg2-binary
 stripe
 django-environ
 gunicorn
+python-dotenv
